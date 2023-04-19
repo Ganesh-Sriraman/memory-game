@@ -6,6 +6,8 @@ function Cards(){
     const [gameLost,setGameLost] =useState(false)
     const [showResult,setShowResult] = useState(false)
     const [timeLeft, setTimeLeft] = useState(60);
+    const text = 'Refresh'
+    const [buttonText, setButtonText] = useState(text);
     const refreshButton= useRef(null);
 
     useEffect(() => {
@@ -15,10 +17,10 @@ function Cards(){
             setShowResult(true)
             if(items.some(obj => obj.stat === '')){
                 setGameLost(true)
-                setTimeout(() => refreshButton.current.click(), 2000);
+                setButtonText('Try again')
             }else{
                 setGameLost(false);
-                setTimeout(() => refreshButton.current.click(), 2000);
+                setButtonText('Try again')
 
             }
           }
@@ -138,7 +140,7 @@ function Cards(){
         <div className='control-card-container'>
             <span>Time:{timeLeft}S</span>
             <span>Flips: {flips}</span>
-            <button ref={refreshButton} onClick={Refresh}>Refresh</button>
+            <button ref={refreshButton} onClick={Refresh}>{buttonText}</button>
         </div>
 
         </div>
